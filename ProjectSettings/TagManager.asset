@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - Bullet(Player)
   - Bullet(Enemy)
-  - Box
+  - Ground
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2544949187
+    locked: 0
+  - name: Enemy
+    uniqueID: 1728197891
     locked: 0
