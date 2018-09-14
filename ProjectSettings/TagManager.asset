@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Ground
+  - Bullet(Enemy)
+  - GoalFlag
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Bullet(Enemy)
   - Box
   - Ground
-  - 
+  - Icon
   - 
   - 
   - 
@@ -43,9 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Bullet
-    uniqueID: 1305718991
-    locked: 0
   - name: Player
     uniqueID: 2544949187
+    locked: 0
+  - name: Bullet
+    uniqueID: 1305718991
     locked: 0
