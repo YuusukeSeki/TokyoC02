@@ -70,22 +70,38 @@ public class Enemy : MonoBehaviour {
 
     }
 
-    // 当たり判定
-    public void OnTriggerEnter2D(Collider2D collision)
+    // プレイヤーとの接触判定
+    void OnCollisionEnter2D(Collision2D col)
     {
-        // Bullet(Player)との被弾処理
-        // レイヤー名を取得
-        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-
-        // レイヤー名がBullet(Player)でダメージを受ける
-        if (layerName == "Bullet(Player)")
+        if (col.gameObject.tag == "Player")
         {
-            // ダメージを受ける処理
-            ReceiveDamage(collision.GetComponent<Bullet>()._attackPower);
+            col.gameObject.GetComponent<Player>().ReceiveDamage(attackPower);
+        }
 
-            // 当たった弾を削除
-            Destroy(collision.gameObject);
+    }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<Player>().ReceiveDamage(attackPower);
+        }
 
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<Player>().ReceiveDamage(attackPower);
+        }
+
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<Player>().ReceiveDamage(attackPower);
         }
 
     }

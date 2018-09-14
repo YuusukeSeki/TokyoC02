@@ -1,39 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChangeSprite : MonoBehaviour {
-    public Sprite SpriteMae;
-    public Sprite SpriteAto;
-    bool flag = false;
-    int cnt;
+    SpriteRenderer _sr;
+    Player _player;
+
+    public Sprite _SpriteStanding;
+    public Sprite _SpriteSliding;
+    bool _flag = false;
+    bool _preFlag;
+
 
     // Use this for initialization
     void Start () {
-		
+        _player = GetComponent<Player>();
+        _sr = GetComponent<SpriteRenderer>();
+        _preFlag = _flag;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        cnt++;
 
-        if(cnt % 50 == 0)
+    }
+
+    public void Change(bool sliding)
+    {
+        if (sliding == _preFlag)
+            return;
+
+        _flag = sliding;
+
+        if (!_flag)
         {
-            flag = !flag;
-        }
-
-        if (flag)
-        {
-            GetComponent<SpriteRenderer>().sprite = SpriteMae;
-
-            //Resources.Load<Sprite>(fileName);
+            _sr.sprite = _SpriteStanding;
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = SpriteAto;
-
+            _sr.sprite = _SpriteSliding;
         }
 
+        if (_preFlag != _flag)
+        {
+            Vector2 objectSize = _sr.bounds.size;
+            _player.ResizeCollider2D(_flag, objectSize);
+        }
+
+        _preFlag = _flag;
     }
+
 }
